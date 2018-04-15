@@ -1,80 +1,100 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
-# rossman hello nyár promóció
+# Rossman hello nyár promóció
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik le.
 
-## Questions Collection [/questions]
 
-### List All Questions [GET]
+## Toplista lékérdezése [/api/highscore/{game}/{limit}]
+
+### Adott játékhoz tartozó eredmény [GET]
+
+A highscore/{game}[/{limit}] endpoint egy játékhoz tartozó összes vagy a limit paraméterben meghatározott darab pontszámot adja vissza.
+A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek meg.
+
++ Parameters
+    + game - "tetris" vagy "helyfoglalo" értékeket vehet fel
+    + limit - integer
+
++ Response 200 (application/json)
+
+        [
+            {  
+                "id":1,
+                "game":"tetris",
+                "name":"Test1",
+                "score":100,
+                "created_at":"2018-04-15 12:04:30",
+                "updated_at":"2018-04-15 14:41:12"
+            },
+            {  
+                "id":2,
+                "game":"tetris",
+                "name":"Test1",
+                "score":50,
+                "created_at":"2018-04-15 12:05:30",
+                "updated_at":"2018-04-15 14:42:12"
+            }
+        ]
+
+
+## Toplistába mentés [/api/highscore]
+
+### Eredmény létrehozása [POST]
+
+Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét.
+
++ Attributes
+    + name - A játékos által beírt név
+    + score - integer
+    + game - "tetris" vagy "helyfoglalo" értékeket vehet fel
+
++ Request (application/json)
+
+        {
+            "name": "Test",
+            "score": 1000,
+            "game": "tetris"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "Test",
+                "score": "1000",
+                "game": "tetris",
+                "updated_at": "2018-04-15 21:51:48",
+                "created_at": "2018-04-15 21:51:48",
+                "id": 14
+            }
+            
+## Strandlista lekérdezése [/api/beaches]
+
+### Minden strand lekérdezése [GET]
+
+A beaches endpoint minden feltöltött strandot visszaad.
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "id": 1,
+                "name": "Kisfaludy Strand",
+                "address": "Aranyhíd sétány",
+                "lat": "46.9599040",
+                "lng": "17.8851200",
+                "created_at": "2018-04-15 16:03:58",
+                "updated_at": "2018-04-15 16:03:58"
+            },
+            {
+                "id": 2,
+                "name": "Balatonvilágos Községi Strandfürdő",
+                "address": "Zrínyi út 28-30",
+                "lat": "46.9664970",
+                "lng": "18.1584530",
+                "created_at": "2018-04-15 16:03:58",
+                "updated_at": "2018-04-15 16:03:58"
             }
         ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
