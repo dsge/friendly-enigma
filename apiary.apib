@@ -4,6 +4,46 @@ FORMAT: 1A
 
 A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik le.
 
+## Regisztráció [/api/register]
+
+### User létrehozása [POST]
+
++ Parameters
+    + name - string
+    + email - string
+    + password - string
+    + password_confirmation - string, ugyanaz mint a password
+    + phone - integer
+    + privacy_policy_accepted - bool
+    + newsletter_accepted - bool
+
++ Response 200 (application/json)
+
+        {  
+            "id": 3
+            "name": "Test",
+            "email":"test@test.hu",
+            "phone":36705061837,
+            "privacy_policy_accepted":1,
+            "newsletter_accepted":0
+        }
+        
+## Bejelentkezés [/api/register]
+
+### User belépés [POST]
+
++ Parameters
+    + email - string
+    + password - string
+
++ Response 200 (application/json)
+
+        {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNDg5OTA3NCwiZXhwIjoxNTI0OTAyNjc0LCJuYmYiOjE1MjQ4OTkwNzQsImp0aSI6IjFHa2pvSk56cmFBQXlyQmYiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mTLDhubGw1woiA4GIZZ09xV6CqR4GWyoqlmM50j2k9I",
+            "token_type": "bearer",
+            "expires_in": 3600
+        }
+
 
 ## Toplista lékérdezése [/api/highscore/{game}/{limit}]
 
@@ -22,7 +62,7 @@ A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek me
             {  
                 "id":1,
                 "game":"tetris",
-                "name":"Test1",
+                "user_id":3,
                 "score":100,
                 "created_at":"2018-04-15 12:04:30",
                 "updated_at":"2018-04-15 14:41:12"
@@ -30,7 +70,7 @@ A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek me
             {  
                 "id":2,
                 "game":"tetris",
-                "name":"Test1",
+                "user_id":1,
                 "score":50,
                 "created_at":"2018-04-15 12:05:30",
                 "updated_at":"2018-04-15 14:42:12"
@@ -52,7 +92,7 @@ Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét
 + Request (application/json)
 
         {
-            "name": "Test",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNDg5OTA3NCwiZXhwIjoxNTI0OTAyNjc0LCJuYmYiOjE1MjQ4OTkwNzQsImp0aSI6IjFHa2pvSk56cmFBQXlyQmYiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mTLDhubGw1woiA4GIZZ09xV6CqR4GWyoqlmM50j2k9I"
             "score": 1000,
             "game": "tetris"
         }
@@ -62,7 +102,7 @@ Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét
     + Body
 
             {
-                "name": "Test",
+                "user_id": "3",
                 "score": "1000",
                 "game": "tetris",
                 "updated_at": "2018-04-15 21:51:48",
@@ -86,7 +126,10 @@ A beaches endpoint minden feltöltött strandot visszaad.
                 "lat": "46.9599040",
                 "lng": "17.8851200",
                 "created_at": "2018-04-15 16:03:58",
-                "updated_at": "2018-04-15 16:03:58"
+                "updated_at": "2018-04-15 16:03:58",
+                "url": "http://index.hu",
+                "image": "https://strand.hu/upload/images/Galeria/strand/selyemreti_strandfurdo/termalfurdo_miskolc_selyemreti_furdo_6.jpg",
+                "type": "épített"
             },
             {
                 "id": 2,
@@ -95,6 +138,9 @@ A beaches endpoint minden feltöltött strandot visszaad.
                 "lat": "46.9664970",
                 "lng": "18.1584530",
                 "created_at": "2018-04-15 16:03:58",
-                "updated_at": "2018-04-15 16:03:58"
+                "updated_at": "2018-04-15 16:03:58",
+                "url": "http://index.hu",
+                "image": "https://strand.hu/upload/images/Galeria/strand/selyemreti_strandfurdo/termalfurdo_miskolc_selyemreti_furdo_6.jpg",
+                "type": "épített"
             }
         ]
