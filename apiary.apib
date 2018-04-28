@@ -43,6 +43,30 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
             "token_type": "bearer",
             "expires_in": 3600
         }
+        
+## Nyerőkódok [/api/code]
+
+### Kód beküldés [POST]
+
++ Attributes
+    + token
+    + code - string
+
++ Request (application/json)
+
+        {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNDg5OTA3NCwiZXhwIjoxNTI0OTAyNjc0LCJuYmYiOjE1MjQ4OTkwNzQsImp0aSI6IjFHa2pvSk56cmFBQXlyQmYiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mTLDhubGw1woiA4GIZZ09xV6CqR4GWyoqlmM50j2k9I",
+            "token_type": "bearer",
+            "expires_in": 3600
+        }
+        
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "message": "Sikeres kódbeküldés.",
+            }
 
 
 ## Toplista lékérdezése [/api/highscore/{game}/{limit}]
@@ -85,7 +109,7 @@ A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek me
 Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét.
 
 + Attributes
-    + name - A játékos által beírt név
+    + token
     + score - integer
     + game - "tetris" vagy "helyfoglalo" értékeket vehet fel
 
