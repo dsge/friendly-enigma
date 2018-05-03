@@ -28,6 +28,20 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
             "newsletter_accepted":0
         }
         
+## Email megerősítés [/api/registration_confirmation?hash={hash}]
+
+### Email megerősítés [GET]
+
++ Parameters
+    + hash - emailben szereplő hash
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            "message": "Sikeres aktiválás!"
+        }
+        
 ## Bejelentkezés [/api/login]
 
 ### User belépés [POST]
