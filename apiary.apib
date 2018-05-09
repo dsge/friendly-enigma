@@ -6,7 +6,7 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
 
 ## Regisztráció [/api/register]
 
-### User létrehozása [POST]
+### /api/register [POST]
 
 + Parameters
     + name - string
@@ -30,7 +30,7 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
         
 ## Email megerősítés [/api/registration_confirmation?hash={hash}]
 
-### Email megerősítés [GET]
+### /api/registration_confirmation?hash={hash} [GET]
 
 + Parameters
     + hash - emailben szereplő hash
@@ -44,7 +44,7 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
         
 ## Bejelentkezés [/api/login]
 
-### User belépés [POST]
+### /api/login [POST]
 
 + Parameters
     + email - string
@@ -58,9 +58,34 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
             "expires_in": 3600
         }
         
+## Felhasználó adatainak lekérdezése [/api/me]
+
+### /api/me [POST]
+
++ Parameters
+    + token
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "Admin",
+            "email": "schmdt.daniel@gmail.com",
+            "created_at": "2018-04-15 18:21:53",
+            "updated_at": "2018-04-15 18:21:53",
+            "rossmann_id": "",
+            "is_admin": 1,
+            "address": null,
+            "phone": null,
+            "privacy_policy_accepted": null,
+            "newsletter_accepted": null,
+            "active": 1,
+            "activation_hash": null
+        }
+        
 ## Nyerőkódok [/api/code]
 
-### Kód beküldés [POST]
+### /api/code [POST]
 
 + Attributes
     + token
@@ -83,7 +108,7 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
             
 ## Felhasználó által feltöltött nyerőkódok [/api/codes]
 
-### Kód lekérdezés [GET]
+### /api/codes [GET]
 
 + Headers
     Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNDg5OTA3NCwiZXhwIjoxNTI0OTAyNjc0LCJuYmYiOjE1MjQ4OTkwNzQsImp0aSI6IjFHa2pvSk56cmFBQXlyQmYiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mTLDhubGw1woiA4GIZZ09xV6CqR4GWyoqlmM50j2k9I
@@ -121,7 +146,7 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
 
 ## Toplista lékérdezése - már nem kell használni [/api/highscore/{game}/{limit}]
 
-### Adott játékhoz tartozó eredmény [GET]
+### /api/highscore/{game}/{limit} [GET]
 
 A highscore/{game}[/{limit}] endpoint egy játékhoz tartozó összes vagy a limit paraméterben meghatározott darab pontszámot adja vissza.
 A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek meg.
@@ -154,7 +179,7 @@ A responseban az eredmények pontszám szerint csökkenő sorrendben jelennek me
 
 ## Toplistába mentés [/api/highscore]
 
-### Eredmény létrehozása [POST]
+### /api/highscore [POST]
 
 Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét.
 
@@ -186,7 +211,7 @@ Ezzel az endpointtal a játék végén el lehet menteni a játékos eredményét
             
 ## Strandlista lekérdezése [/api/beaches]
 
-### Minden strand lekérdezése [GET]
+### /api/beaches [GET]
 
 A beaches endpoint minden feltöltött strandot visszaad.
 
