@@ -83,6 +83,21 @@ A következő endpointok a Rossman hello nyár microsite egyes funkcióit fedik 
             "activation_hash": null
         }
         
+## Token frissítése [/api/refresh]
+
+### /api/refresh [POST]
+
++ Parameters
+    + token
+
++ Response 200 (application/json)
+
+        {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWZyZXNoIiwiaWF0IjoxNTI2MDM1NDg3LCJleHAiOjE1MjYwMzkxMjEsIm5iZiI6MTUyNjAzNTUyMSwianRpIjoiU1VjQU9SUTRDcFdJd0ZVYyIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.TzSCHhfXoAi7Eq77TJHNgpJgTQDgzfPYoh-SfvFITe0",
+            "token_type": "bearer",
+            "expires_in": 3600
+        }
+        
 ## Nyerőkódok [/api/code]
 
 ### /api/code [POST]
